@@ -320,3 +320,25 @@ Ghi chú:
 - Chapter Service container tên `comic_chapter_service`
 - Chapter Service chạy ở port `3003`
 - Khi chạy trong Docker, MongoDB được gọi bằng hostname `mongodb`
+
+### Bước 18: Tạo API Gateway
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo project `api-gateway`
+- Cài đặt `http-proxy-middleware`
+- Cấu hình Gateway chạy ở port `3000`
+- Proxy request:
+  - `/api/auth` -> Auth Service
+  - `/api/comics` -> Comic Service
+  - `/api/chapters` -> Chapter Service
+- Test thành công:
+  - `GET /api/comics`
+  - `GET /api/chapters/comic/:comicId`
+  - `POST /api/auth/login`
+
+Ghi chú:
+- Auth, Comic, Chapter Service chạy bằng Docker
+- API Gateway hiện chạy local bằng `npm run start:dev`
+- Client chỉ cần gọi qua `http://localhost:3000/api/...`
