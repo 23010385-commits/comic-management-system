@@ -196,10 +196,21 @@ h1 {
 
 .reader-box {
   margin-top: 32px;
+  background: #111;
+  padding: 0;
+  line-height: 0;
+}
+
+.reader-box h2 {
+  color: white;
+  padding: 20px;
+  margin: 0;
+  line-height: normal;
 }
 
 .reader-image {
+  display: block;
   width: 100%;
-  margin-bottom: 16px;
-  border-radius: 10px;
+  margin: 0 auto;
+  border-radius: 0;
 }

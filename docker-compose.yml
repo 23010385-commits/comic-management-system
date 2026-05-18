@@ -65,6 +65,13 @@ services:
     depends_on:
       - mongodb
       - rabbitmq
+  frontend:
+    build: ./frontend
+    container_name: comic_frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api-gateway
 
 volumes:
   mongodb_data:

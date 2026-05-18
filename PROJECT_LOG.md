@@ -611,3 +611,18 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Frontend hiện đã có flow đọc truyện cơ bản
 - User có thể xem comic, xem chapter và đọc ảnh chapter
+
+### Bước 33: Dockerize Frontend
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo `Dockerfile` cho frontend
+- Tạo `.dockerignore` cho frontend
+- Thêm frontend vào `docker-compose.yml`
+- Build và chạy frontend bằng Docker Compose
+- Test frontend tại `http://localhost:5173`
+
+Ghi chú:
+- Frontend container tên `comic_frontend`
+- Toàn bộ hệ thống hiện đã chạy bằng Docker Compose
