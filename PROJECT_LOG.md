@@ -437,3 +437,25 @@ Ghi chú:
 - Chapter Service publish event `chapter.created`
 - Notification Service nhận event và log thông báo chương mới
 - Hệ thống hiện đã có giao tiếp bất đồng bộ qua RabbitMQ
+
+### Bước 24: Tạo Search Service cơ bản
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo `search-service`
+- Kết nối MongoDB riêng cho Search Service
+- Tạo schema `SearchComic`
+- Tạo API tìm kiếm:
+  - `GET /search?keyword=...`
+- Kết nối RabbitMQ
+- Consume event `comic.created`
+- Tự động index comic mới vào database search
+- Dockerize Search Service
+- Test search API thành công
+
+Ghi chú:
+- Search Service chạy ở port `3005`
+- Container tên `comic_search_service`
+- Search hoạt động bằng regex search cơ bản
+- Dữ liệu search được đồng bộ qua RabbitMQ event

@@ -57,6 +57,14 @@ services:
       - "3004:3004"
     depends_on:
       - rabbitmq
+  search-service:
+    build: ./search-service
+    container_name: comic_search_service
+    ports:
+      - "3005:3005"
+    depends_on:
+      - mongodb
+      - rabbitmq
 
 volumes:
   mongodb_data:
