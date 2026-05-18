@@ -84,3 +84,23 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - MongoDB đang chạy bằng Docker ở `localhost:27017`
 - Auth Service dùng database riêng: `comic_auth_db`
+
+### Bước 5: Tạo User Schema cho Auth Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo thư mục `src/schemas`
+- Tạo file `user.schema.ts`
+- Khai báo schema User gồm:
+  - username
+  - email
+  - password
+  - role
+- Đăng ký UserSchema vào AppModule
+- Chạy thử Auth Service thành công
+
+Ghi chú:
+- User sẽ được lưu trong database `comic_auth_db`
+- Trường email được đặt unique để tránh đăng ký trùng tài khoản
+- Password sẽ dùng để lưu mật khẩu đã mã hóa ở bước sau
