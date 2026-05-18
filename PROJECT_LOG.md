@@ -303,3 +303,20 @@ Ghi chú:
 - Chapter liên kết với Comic thông qua `comicId`
 - Dữ liệu chapter được lưu trong database `comic_chapter_db`
 - `images` lưu danh sách URL ảnh của chapter
+
+### Bước 17: Dockerize Chapter Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo `Dockerfile` cho Chapter Service
+- Tạo `.dockerignore`
+- Thêm Chapter Service vào `docker-compose.yml`
+- Build và chạy Chapter Service bằng Docker Compose
+- Kết nối Chapter Service với MongoDB container bằng hostname `mongodb`
+- Test API chapter thành công qua Docker
+
+Ghi chú:
+- Chapter Service container tên `comic_chapter_service`
+- Chapter Service chạy ở port `3003`
+- Khi chạy trong Docker, MongoDB được gọi bằng hostname `mongodb`
