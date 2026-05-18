@@ -151,3 +151,55 @@ h1 {
 .admin-box button:hover {
   background: #157347;
 }
+.detail-box {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
+
+.detail-cover {
+  width: 300px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.chapter-list button {
+  padding: 14px;
+  border: none;
+  background: #222;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.chapter-list button:hover {
+  background: #444;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #dc3545;
+  color: white;
+  cursor: pointer;
+}
+
+.reader-box {
+  margin-top: 32px;
+}
+
+.reader-image {
+  width: 100%;
+  margin-bottom: 16px;
+  border-radius: 10px;
+}

@@ -595,3 +595,19 @@ Ghi chú:
 - Admin cần copy `_id` của comic để tạo chapter
 - Chapter Service publish event qua RabbitMQ
 - Notification Service nhận event chương mới
+
+### Bước 32: Xem chi tiết truyện và đọc chapter
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Thêm chức năng click vào comic để xem chi tiết
+- Gọi API `GET /api/chapters/comic/:comicId`
+- Hiển thị danh sách chapter theo comic
+- Thêm chức năng click chapter để đọc nội dung
+- Hiển thị danh sách ảnh của chapter
+- Thêm nút Back để quay lại danh sách truyện
+
+Ghi chú:
+- Frontend hiện đã có flow đọc truyện cơ bản
+- User có thể xem comic, xem chapter và đọc ảnh chapter

@@ -10,6 +10,13 @@ type Comic = {
   coverImage: string;
   status: string;
 };
+type Chapter = {
+  _id: string;
+  comicId: string;
+  title: string;
+  chapterNumber: number;
+  images: string[];
+};
 
 function App() {
   const [comics, setComics] = useState<Comic[]>([]);
@@ -42,6 +49,16 @@ function App() {
 
   const [chapterImages, setChapterImages] =
     useState('');
+
+  const [selectedComic, setSelectedComic] =
+    useState<Comic | null>(null);
+
+  const [chapters, setChapters] = useState<
+    Chapter[]
+  >([]);
+
+  const [selectedChapter, setSelectedChapter] =
+    useState<Chapter | null>(null);
 
   const fetchComics = async () => {
     try {
@@ -192,6 +209,38 @@ function App() {
 
       alert('Create chapter error');
     }
+  };
+
+  const fetchChapters = async (
+    comicId: string,
+  ) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/chapters/comic/${comicId}`,
+      );
+
+      const data = await response.json();
+
+      setChapters(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSelectComic = async (
+    comic: Comic,
+  ) => {
+    setSelectedComic(comic);
+
+    setSelectedChapter(null);
+
+    await fetchChapters(comic._id);
+  };
+
+  const handleSelectChapter = (
+    chapter: Chapter,
+  ) => {
+    setSelectedChapter(chapter);
   };
 
   const handleLogout = () => {
@@ -377,40 +426,117 @@ function App() {
         <p>Không tìm thấy truyện.</p>
       )}
 
-      <div className="comic-grid">
-        {comics.map((comic) => (
-          <div className="comic-card" key={comic._id}>
-            <img
-              src={comic.coverImage}
-              alt={comic.title}
-            />
+      {selectedComic && (
+        <div className="detail-box">
+          <button
+            className="back-button"
+            onClick={() => {
+              setSelectedComic(null);
+              setSelectedChapter(null);
+            }}
+          >
+            ← Back
+          </button>
 
-            <div className="comic-content">
-              <h2>{comic.title}</h2>
-              <p>
-                <strong>ID:</strong> {comic._id}
-              </p>
+          <h2>{selectedComic.title}</h2>
 
-              <p>
-                <strong>Tác giả:</strong>{' '}
-                {comic.author}
-              </p>
+          <img
+            className="detail-cover"
+            src={selectedComic.coverImage}
+            alt={selectedComic.title}
+          />
 
-              <p>
-                <strong>Thể loại:</strong>{' '}
-                {comic.genres.join(', ')}
-              </p>
+          <p>
+            <strong>Author:</strong>{' '}
+            {selectedComic.author}
+          </p>
 
-              <p>
-                <strong>Trạng thái:</strong>{' '}
-                {comic.status}
-              </p>
+          <p>
+            <strong>Genres:</strong>{' '}
+            {selectedComic.genres.join(', ')}
+          </p>
 
-              <p>{comic.description}</p>
-            </div>
+          <p>{selectedComic.description}</p>
+
+          <h3>Chapters</h3>
+
+          <div className="chapter-list">
+            {chapters.map((chapter) => (
+              <button
+                key={chapter._id}
+                onClick={() =>
+                  handleSelectChapter(chapter)
+                }
+              >
+                Chapter {chapter.chapterNumber} -{' '}
+                {chapter.title}
+              </button>
+            ))}
           </div>
-        ))}
-      </div>
+
+          {selectedChapter && (
+            <div className="reader-box">
+              <h2>
+                Chapter{' '}
+                {selectedChapter.chapterNumber}
+              </h2>
+
+              {selectedChapter.images.map(
+                (image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Page ${index + 1}`}
+                    className="reader-image"
+                  />
+                ),
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {!selectedComic && (
+        <div className="comic-grid">
+          {comics.map((comic) => (
+            <div
+              className="comic-card"
+              key={comic._id}
+              onClick={() =>
+                handleSelectComic(comic)
+              }
+            >
+              <img
+                src={comic.coverImage}
+                alt={comic.title}
+              />
+
+              <div className="comic-content">
+                <h2>{comic.title}</h2>
+                <p>
+                  <strong>ID:</strong> {comic._id}
+                </p>
+
+                <p>
+                  <strong>Tác giả:</strong>{' '}
+                  {comic.author}
+                </p>
+
+                <p>
+                  <strong>Thể loại:</strong>{' '}
+                  {comic.genres.join(', ')}
+                </p>
+
+                <p>
+                  <strong>Trạng thái:</strong>{' '}
+                  {comic.status}
+                </p>
+
+                <p>{comic.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>)}
     </div>
   );
 }
