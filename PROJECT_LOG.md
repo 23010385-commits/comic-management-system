@@ -177,3 +177,21 @@ Ghi chú:
   Authorization: Bearer TOKEN
 - Nếu token không hợp lệ hoặc hết hạn:
   API trả `401 Unauthorized`
+
+  ### Bước 10: Dockerize Auth Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo `Dockerfile` cho Auth Service
+- Tạo `.dockerignore`
+- Build Auth Service bằng Docker
+- Thêm Auth Service vào `docker-compose.yml`
+- Chạy Auth Service container thành công
+- Kết nối Auth Service với MongoDB container bằng hostname `mongodb`
+- Test API login thành công qua Docker
+
+Ghi chú:
+- Auth Service container tên `comic_auth_service`
+- Auth Service chạy ở port `3001`
+- Khi chạy trong Docker, không dùng `localhost` để kết nối MongoDB mà dùng tên service `mongodb`

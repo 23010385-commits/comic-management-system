@@ -20,5 +20,13 @@ services:
       - "5672:5672"
       - "15672:15672"
 
+  auth-service:
+    build: ./auth-service
+    container_name: comic_auth_service
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongodb
+
 volumes:
   mongodb_data:
