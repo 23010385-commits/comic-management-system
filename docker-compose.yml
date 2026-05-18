@@ -50,6 +50,13 @@ services:
       - auth-service
       - comic-service
       - chapter-service
+  notification-service:
+    build: ./notification-service
+    container_name: comic_notification_service
+    ports:
+      - "3004:3004"
+    depends_on:
+      - rabbitmq
 
 volumes:
   mongodb_data:

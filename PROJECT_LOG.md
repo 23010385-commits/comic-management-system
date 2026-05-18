@@ -403,3 +403,20 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Đây là bước đầu triển khai Event-driven Architecture
 - Comic Service không gọi trực tiếp service khác mà gửi event qua RabbitMQ
+
+### Bước 22: Tạo Notification Service consume RabbitMQ event
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo project `notification-service`
+- Cài đặt `amqplib`
+- Tạo consumer lắng nghe queue `comic.created`
+- Thêm Notification Service vào `docker-compose.yml`
+- Dockerize Notification Service
+- Test nhận event từ RabbitMQ thành công
+
+Ghi chú:
+- Notification Service chạy ở port `3004`
+- Container tên `comic_notification_service`
+- Khi Comic Service tạo truyện mới, Notification Service nhận event và log thông báo
