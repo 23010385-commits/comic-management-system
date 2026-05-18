@@ -483,3 +483,23 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Search Service hiện hoạt động như search index database
 - Dữ liệu được đồng bộ bất đồng bộ qua RabbitMQ
+
+### Bước 26: Bảo vệ API Admin bằng JWT tại API Gateway
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài đặt `jsonwebtoken`
+- Tạo `auth.middleware.ts` trong API Gateway
+- Bảo vệ các route admin:
+  - `POST /api/comics`
+  - `PATCH /api/comics/:id`
+  - `DELETE /api/comics/:id`
+  - `POST /api/chapters`
+- Đồng bộ JWT secret với Auth Service
+- Test không token trả `401 Unauthorized`
+- Test có token tạo comic thành công
+
+Ghi chú:
+- Gateway đóng vai trò kiểm tra xác thực tập trung
+- Các request đọc dữ liệu `GET` vẫn được public

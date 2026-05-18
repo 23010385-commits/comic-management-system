@@ -1,9 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { AppModule } from './app.module';
+import { authMiddleware } from './middleware/auth.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use(authMiddleware);
 
   app.use(
     '/api/auth',
