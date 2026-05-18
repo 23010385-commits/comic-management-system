@@ -626,3 +626,54 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Frontend container tên `comic_frontend`
 - Toàn bộ hệ thống hiện đã chạy bằng Docker Compose
+
+### Bước 34: Upload cover image local cho Comic Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tích hợp Multer cho Comic Service
+- Upload ảnh cover từ frontend
+- Lưu file local trong thư mục uploads
+- Serve static file qua `/uploads`
+- Frontend preview ảnh trước khi upload
+- MongoDB lưu URL ảnh thật
+
+Flow:
+Frontend
+-> FormData
+-> API Gateway
+-> Comic Service
+-> Multer upload
+-> uploads/
+-> MongoDB
+
+Ghi chú:
+- Cover image hiện đã upload trực tiếp từ thiết bị
+- Không còn cần nhập URL ảnh thủ công
+
+### Bước 35: Upload nhiều ảnh chapter từ thiết bị
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tích hợp multi-file upload cho Chapter Service
+- Upload nhiều ảnh chapter bằng Multer
+- Lưu local uploads cho chapter
+- Frontend hỗ trợ chọn nhiều file ảnh
+- Preview nhiều ảnh trước khi upload
+- Reader hiển thị ảnh thật từ local uploads
+
+Flow:
+Frontend
+-> FormData multi-images
+-> API Gateway
+-> Chapter Service
+-> Multer multi-upload
+-> uploads/
+-> MongoDB lưu mảng URL
+-> Chapter Reader render ảnh
+
+Ghi chú:
+- Chapter reader hiện hoạt động như web truyện thực tế
+- Ảnh được nối liền nhau theo chiều dọc

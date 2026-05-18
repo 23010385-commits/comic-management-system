@@ -214,3 +214,15 @@ h1 {
   margin: 0 auto;
   border-radius: 0;
 }
+
+.preview-image {
+  width: 220px;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+}
+
+.preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

@@ -10,6 +10,8 @@ COPY . .
 
 RUN npm run build
 
+RUN mkdir -p uploads
+
 EXPOSE 3003
 
 CMD ["npm", "run", "start:prod"]

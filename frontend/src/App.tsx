@@ -35,7 +35,7 @@ function App() {
   const [description, setDescription] =
     useState('');
   const [coverImage, setCoverImage] =
-    useState('');
+    useState<File | null>(null);
   const [status, setStatus] =
     useState('ONGOING');
   const [chapterComicId, setChapterComicId] =
@@ -48,7 +48,7 @@ function App() {
     useState(1);
 
   const [chapterImages, setChapterImages] =
-    useState('');
+    useState<File[]>([]);
 
   const [selectedComic, setSelectedComic] =
     useState<Comic | null>(null);
@@ -127,24 +127,40 @@ function App() {
 
   const handleCreateComic = async () => {
     try {
+      const formData = new FormData();
+
+      formData.append('title', title);
+      formData.append('author', author);
+
+      genres
+        .split(',')
+        .map((g) => g.trim())
+        .forEach((genre) => {
+          formData.append('genres', genre);
+        });
+
+      formData.append(
+        'description',
+        description,
+      );
+
+      formData.append('status', status);
+
+      if (coverImage) {
+        formData.append(
+          'coverImage',
+          coverImage,
+        );
+      }
+
       const response = await fetch(
         'http://localhost:3000/api/comics',
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            title,
-            author,
-            genres: genres
-              .split(',')
-              .map((g) => g.trim()),
-            description,
-            coverImage,
-            status,
-          }),
+          body: formData,
         },
       );
 
@@ -157,7 +173,7 @@ function App() {
         setAuthor('');
         setGenres('');
         setDescription('');
-        setCoverImage('');
+        setCoverImage(null);
         setStatus('ONGOING');
 
         fetchComics();
@@ -173,22 +189,35 @@ function App() {
 
   const handleCreateChapter = async () => {
     try {
+      const formData = new FormData();
+
+      formData.append(
+        'comicId',
+        chapterComicId,
+      );
+
+      formData.append(
+        'title',
+        chapterTitle,
+      );
+
+      formData.append(
+        'chapterNumber',
+        chapterNumber.toString(),
+      );
+
+      chapterImages.forEach((image) => {
+        formData.append('images', image);
+      });
+
       const response = await fetch(
         'http://localhost:3000/api/chapters',
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            comicId: chapterComicId,
-            title: chapterTitle,
-            chapterNumber,
-            images: chapterImages
-              .split(',')
-              .map((img) => img.trim()),
-          }),
+          body: formData,
         },
       );
 
@@ -200,7 +229,7 @@ function App() {
         setChapterComicId('');
         setChapterTitle('');
         setChapterNumber(1);
-        setChapterImages('');
+        setChapterImages([]);
       } else {
         alert(data.message || 'Create failed');
       }
@@ -325,13 +354,24 @@ function App() {
           />
 
           <input
-            type="text"
-            placeholder="Cover Image URL"
-            value={coverImage}
-            onChange={(e) =>
-              setCoverImage(e.target.value)
-            }
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              if (e.target.files?.[0]) {
+                setCoverImage(
+                  e.target.files[0],
+                );
+              }
+            }}
           />
+
+          {coverImage && (
+            <img
+              src={URL.createObjectURL(coverImage)}
+              alt="Preview"
+              className="preview-image"
+            />
+          )}
 
           <textarea
             placeholder="Description"
@@ -393,13 +433,29 @@ function App() {
             }
           />
 
-          <textarea
-            placeholder="Image URLs (comma separated)"
-            value={chapterImages}
-            onChange={(e) =>
-              setChapterImages(e.target.value)
-            }
-          />
+          <input
+  type="file"
+  multiple
+  accept="image/*"
+  onChange={(e) => {
+    if (e.target.files) {
+      setChapterImages(
+        Array.from(e.target.files),
+      );
+    }
+  }}
+/>
+
+<div className="preview-grid">
+  {chapterImages.map((image, index) => (
+    <img
+      key={index}
+      src={URL.createObjectURL(image)}
+      alt={`Preview ${index}`}
+      className="preview-image"
+    />
+  ))}
+</div>
 
           <button onClick={handleCreateChapter}>
             Create Chapter

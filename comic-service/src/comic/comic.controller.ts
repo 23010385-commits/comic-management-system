@@ -6,18 +6,54 @@ import {
   Param,
   Patch,
   Post,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
+
 import { ComicService } from './comic.service';
+
 import { CreateComicDto } from './dto/create-comic.dto';
 import { UpdateComicDto } from './dto/update-comic.dto';
 
+import { FileInterceptor } from '@nestjs/platform-express';
+
+import { diskStorage } from 'multer';
+
 @Controller('comics')
 export class ComicController {
-  constructor(private readonly comicService: ComicService) {}
+  constructor(
+    private readonly comicService: ComicService,
+  ) {}
 
   @Post()
-  create(@Body() createComicDto: CreateComicDto) {
-    return this.comicService.create(createComicDto);
+  @UseInterceptors(
+    FileInterceptor('coverImage', {
+      storage: diskStorage({
+        destination: './uploads',
+
+        filename: (req, file, callback) => {
+          const uniqueName =
+            Date.now() +
+            '-' +
+            file.originalname;
+
+          callback(null, uniqueName);
+        },
+      }),
+    }),
+  )
+  create(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() createComicDto: CreateComicDto,
+  ) {
+    if (file) {
+      createComicDto.coverImage =
+        `http://localhost:3002/uploads/${file.filename}`;
+    }
+
+    return this.comicService.create(
+      createComicDto,
+    );
   }
 
   @Get()
@@ -35,7 +71,10 @@ export class ComicController {
     @Param('id') id: string,
     @Body() updateComicDto: UpdateComicDto,
   ) {
-    return this.comicService.update(id, updateComicDto);
+    return this.comicService.update(
+      id,
+      updateComicDto,
+    );
   }
 
   @Delete(':id')
