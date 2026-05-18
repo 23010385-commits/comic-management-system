@@ -420,3 +420,20 @@ Ghi chú:
 - Notification Service chạy ở port `3004`
 - Container tên `comic_notification_service`
 - Khi Comic Service tạo truyện mới, Notification Service nhận event và log thông báo
+
+### Bước 23: Publish event khi thêm Chapter mới
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài đặt `amqplib` cho Chapter Service
+- Tạo RabbitMQ Provider trong Chapter Service
+- Publish event `chapter.created` sau khi tạo chapter mới
+- Cập nhật Notification Service để consume thêm queue `chapter.created`
+- Build lại Chapter Service và Notification Service
+- Test nhận event thành công
+
+Ghi chú:
+- Chapter Service publish event `chapter.created`
+- Notification Service nhận event và log thông báo chương mới
+- Hệ thống hiện đã có giao tiếp bất đồng bộ qua RabbitMQ

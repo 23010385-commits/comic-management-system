@@ -6,6 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Chapter, ChapterDocument } from '../schemas/chapter.schema';
 import { CreateChapterDto } from './dto/create-chapter.dto';
+import { getChannel } from '../rabbitmq/rabbitmq.provider';
 
 @Injectable()
 export class ChapterService {
@@ -16,6 +17,21 @@ export class ChapterService {
 
   async create(createChapterDto: CreateChapterDto) {
     const chapter = await this.chapterModel.create(createChapterDto);
+    const channel = getChannel();
+
+    channel.sendToQueue(
+      'chapter.created',
+      Buffer.from(
+        JSON.stringify({
+          chapterId: chapter._id,
+          comicId: chapter.comicId,
+          title: chapter.title,
+          chapterNumber: chapter.chapterNumber,
+        }),
+      ),
+    );
+
+    console.log('Event published: chapter.created');
 
     return {
       message: 'Chapter created successfully',
