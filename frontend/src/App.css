@@ -48,3 +48,31 @@ h1 {
   margin: 6px 0;
   color: #444;
 }
+
+.search-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.search-box button {
+  padding: 14px 24px;
+  border: none;
+  background: #222;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-box button:hover {
+  background: #444;
+}

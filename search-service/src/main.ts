@@ -5,6 +5,7 @@ import { startComicCreatedConsumer } from './rabbitmq/comic-created.consumer';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
 
   const searchService = app.get(SearchService);
 

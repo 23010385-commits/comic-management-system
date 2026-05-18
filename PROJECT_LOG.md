@@ -518,3 +518,21 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Frontend hiện gọi API Gateway tại `http://localhost:3000/api`
 - Một số ảnh không hiển thị vì đang dùng URL mẫu `example.com`
+
+### Bước 28: Thêm Search vào Frontend
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Thêm ô tìm kiếm vào frontend
+- Kết nối frontend với Search Service
+- Bật CORS cho Search Service
+- Tìm kiếm truyện theo:
+  - title
+  - author
+  - genres
+- Test search thành công trên giao diện
+
+Ghi chú:
+- Frontend gọi Comic Service để lấy danh sách truyện
+- Frontend gọi Search Service để tìm kiếm truyện
