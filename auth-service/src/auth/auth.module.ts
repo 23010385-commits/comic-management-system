@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { User, UserSchema } from '../schemas/user.schema';
@@ -12,6 +13,12 @@ import { User, UserSchema } from '../schemas/user.schema';
         schema: UserSchema,
       },
     ]),
+    JwtModule.register({
+      secret: 'comic_secret_key',
+      signOptions: {
+        expiresIn: '1d',
+      },
+    }),
   ],
   controllers: [AuthController],
   providers: [AuthService],

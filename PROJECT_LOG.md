@@ -124,3 +124,24 @@ Ghi chú:
 - Password đã được mã hóa trước khi lưu MongoDB
 - Response không trả về password
 - Khi test API bằng Postman cần chọn `Body -> raw -> JSON`
+
+### Bước 7: Xây dựng chức năng đăng nhập bằng JWT
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài đặt `@nestjs/jwt`
+- Tạo `LoginDto`
+- Thêm `JwtModule` vào AuthModule
+- Xây dựng API `POST /auth/login`
+- Kiểm tra email tồn tại
+- So sánh password bằng `bcrypt.compare`
+- Tạo JWT access token sau khi đăng nhập thành công
+- Test login bằng Postman thành công
+
+Ghi chú:
+- JWT hiện dùng secret tạm thời `comic_secret_key`
+- Token có thời hạn 1 ngày
+- Nếu sai email hoặc password, API trả lỗi `401 Unauthorized`
+- `/auth/register` dùng để đăng ký
+- `/auth/login` dùng để đăng nhập
