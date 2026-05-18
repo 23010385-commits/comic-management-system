@@ -385,3 +385,21 @@ Ghi chú:
 - Cache key: `all_comics`
 - Cache TTL: 60 giây
 - Redis giúp giảm tải MongoDB và tăng tốc phản hồi API
+
+### Bước 21: Publish RabbitMQ event khi tạo truyện
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài đặt `amqplib`
+- Tạo RabbitMQ Provider cho Comic Service
+- Kết nối Comic Service với RabbitMQ container
+- Tạo queue `comic.created`
+- Publish event `comic.created` sau khi tạo truyện mới
+- Test log thành công:
+  - RabbitMQ Connected
+  - Event published: comic.created
+
+Ghi chú:
+- Đây là bước đầu triển khai Event-driven Architecture
+- Comic Service không gọi trực tiếp service khác mà gửi event qua RabbitMQ

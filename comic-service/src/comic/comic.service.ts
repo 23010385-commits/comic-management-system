@@ -8,6 +8,7 @@ import { Comic, ComicDocument } from '../schemas/comic.schema';
 import { CreateComicDto } from './dto/create-comic.dto';
 import { UpdateComicDto } from './dto/update-comic.dto';
 import { redisClient } from '../redis/redis.provider';
+import { getChannel } from '../rabbitmq/rabbitmq.provider';
 
 @Injectable()
 export class ComicService {
@@ -20,6 +21,19 @@ export class ComicService {
     const comic = await this.comicModel.create(createComicDto);
 
     await redisClient.del('all_comics');
+    const channel = getChannel();
+
+    channel.sendToQueue(
+      'comic.created',
+      Buffer.from(
+        JSON.stringify({
+          comicId: comic._id,
+          title: comic.title,
+        }),
+      ),
+    );
+
+    console.log('Event published: comic.created');
 
     return {
       message: 'Comic created successfully',
