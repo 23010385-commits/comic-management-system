@@ -212,3 +212,21 @@ Ghi chú:
 - Comic Service dùng để quản lý thông tin truyện tranh
 - Comic Service chạy tại `http://localhost:3002`
 - Database riêng: `comic_comic_db`
+
+### Bước 12: Tạo Comic Schema và API quản lý truyện cơ bản
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo Comic Module
+- Tạo Comic Service
+- Tạo Comic Controller
+- Tạo Comic Schema
+- Tạo CreateComicDto
+- Xây dựng API `POST /comics`
+- Xây dựng API `GET /comics`
+- Test thêm truyện và lấy danh sách truyện thành công
+
+Ghi chú:
+- Comic Service chạy ở port `3002`
+- Dữ liệu truyện được lưu vào database `comic_comic_db`
