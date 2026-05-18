@@ -195,3 +195,20 @@ Ghi chú:
 - Auth Service container tên `comic_auth_service`
 - Auth Service chạy ở port `3001`
 - Khi chạy trong Docker, không dùng `localhost` để kết nối MongoDB mà dùng tên service `mongodb`
+
+### Bước 11: Khởi tạo Comic Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Xóa `.gitkeep` trong `comic-service`
+- Tạo project NestJS cho `comic-service`
+- Cài đặt `@nestjs/mongoose` và `mongoose`
+- Cấu hình Comic Service chạy ở port `3002`
+- Kết nối Comic Service với MongoDB database `comic_comic_db`
+- Chạy thử service thành công
+
+Ghi chú:
+- Comic Service dùng để quản lý thông tin truyện tranh
+- Comic Service chạy tại `http://localhost:3002`
+- Database riêng: `comic_comic_db`
