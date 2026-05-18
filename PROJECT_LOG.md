@@ -579,3 +579,19 @@ Frontend
 Ghi chú:
 - Chỉ user đã login mới tạo được truyện
 - Search Service tự động index comic mới
+
+### Bước 31: Admin thêm Chapter từ Frontend
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Thêm form tạo chapter trên frontend
+- Gửi JWT token khi gọi `POST /api/chapters`
+- Tạo chapter thành công từ giao diện web
+- Liên kết chapter với comic thông qua `comicId`
+- Test event `chapter.created` thành công
+
+Ghi chú:
+- Admin cần copy `_id` của comic để tạo chapter
+- Chapter Service publish event qua RabbitMQ
+- Notification Service nhận event chương mới

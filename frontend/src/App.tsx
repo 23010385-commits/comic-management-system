@@ -31,6 +31,17 @@ function App() {
     useState('');
   const [status, setStatus] =
     useState('ONGOING');
+  const [chapterComicId, setChapterComicId] =
+    useState('');
+
+  const [chapterTitle, setChapterTitle] =
+    useState('');
+
+  const [chapterNumber, setChapterNumber] =
+    useState(1);
+
+  const [chapterImages, setChapterImages] =
+    useState('');
 
   const fetchComics = async () => {
     try {
@@ -140,6 +151,46 @@ function App() {
       console.error(error);
 
       alert('Create comic error');
+    }
+  };
+
+  const handleCreateChapter = async () => {
+    try {
+      const response = await fetch(
+        'http://localhost:3000/api/chapters',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            comicId: chapterComicId,
+            title: chapterTitle,
+            chapterNumber,
+            images: chapterImages
+              .split(',')
+              .map((img) => img.trim()),
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Chapter created successfully');
+
+        setChapterComicId('');
+        setChapterTitle('');
+        setChapterNumber(1);
+        setChapterImages('');
+      } else {
+        alert(data.message || 'Create failed');
+      }
+    } catch (error) {
+      console.error(error);
+
+      alert('Create chapter error');
     }
   };
 
@@ -262,6 +313,51 @@ function App() {
         </div>
       )}
 
+      {token && (
+        <div className="admin-box">
+          <h2>Admin - Thêm chapter</h2>
+
+          <input
+            type="text"
+            placeholder="Comic ID"
+            value={chapterComicId}
+            onChange={(e) =>
+              setChapterComicId(e.target.value)
+            }
+          />
+
+          <input
+            type="text"
+            placeholder="Chapter Title"
+            value={chapterTitle}
+            onChange={(e) =>
+              setChapterTitle(e.target.value)
+            }
+          />
+
+          <input
+            type="number"
+            placeholder="Chapter Number"
+            value={chapterNumber}
+            onChange={(e) =>
+              setChapterNumber(Number(e.target.value))
+            }
+          />
+
+          <textarea
+            placeholder="Image URLs (comma separated)"
+            value={chapterImages}
+            onChange={(e) =>
+              setChapterImages(e.target.value)
+            }
+          />
+
+          <button onClick={handleCreateChapter}>
+            Create Chapter
+          </button>
+        </div>
+      )}
+
       <div className="search-box">
         <input
           type="text"
@@ -291,6 +387,9 @@ function App() {
 
             <div className="comic-content">
               <h2>{comic.title}</h2>
+              <p>
+                <strong>ID:</strong> {comic._id}
+              </p>
 
               <p>
                 <strong>Tác giả:</strong>{' '}
