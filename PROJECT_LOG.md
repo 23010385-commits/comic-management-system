@@ -145,3 +145,16 @@ Ghi chú:
 - Nếu sai email hoặc password, API trả lỗi `401 Unauthorized`
 - `/auth/register` dùng để đăng ký
 - `/auth/login` dùng để đăng nhập
+
+### Bước 8: Cấu hình port riêng cho Auth Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Sửa `main.ts`
+- Chuyển Auth Service từ port `3000` sang port `3001`
+- Test lại API `POST /auth/login` thành công trên port `3001`
+
+Ghi chú:
+- Port `3000` sẽ dành cho API Gateway
+- Auth Service chạy tại `http://localhost:3001`
