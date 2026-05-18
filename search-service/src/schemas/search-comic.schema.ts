@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type SearchComicDocument = HydratedDocument<SearchComic>;
+export type SearchComicDocument =
+  HydratedDocument<SearchComic>;
 
 @Schema({ timestamps: true })
 export class SearchComic {
@@ -16,6 +17,16 @@ export class SearchComic {
 
   @Prop({ type: [String], default: [] })
   genres: string[];
+
+  @Prop()
+  description: string;
+
+  @Prop()
+  coverImage: string;
+
+  @Prop()
+  status: string;
 }
 
-export const SearchComicSchema = SchemaFactory.createForClass(SearchComic);
+export const SearchComicSchema =
+  SchemaFactory.createForClass(SearchComic);

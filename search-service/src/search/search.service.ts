@@ -27,6 +27,9 @@ export class SearchService {
       title: data.title,
       author: data.author || '',
       genres: data.genres || [],
+      description: data.description || '',
+      coverImage: data.coverImage || '',
+      status: data.status || '',
     });
 
     console.log('Comic indexed:', comic.title);
@@ -36,10 +39,26 @@ export class SearchService {
 
   async search(keyword: string) {
     return this.searchComicModel.find({
-      title: {
-        $regex: keyword,
-        $options: 'i',
-      },
+      $or: [
+        {
+          title: {
+            $regex: keyword,
+            $options: 'i',
+          },
+        },
+        {
+          author: {
+            $regex: keyword,
+            $options: 'i',
+          },
+        },
+        {
+          genres: {
+            $regex: keyword,
+            $options: 'i',
+          },
+        },
+      ],
     });
   }
 }

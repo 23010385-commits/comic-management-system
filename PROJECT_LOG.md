@@ -459,3 +459,27 @@ Ghi chú:
 - Container tên `comic_search_service`
 - Search hoạt động bằng regex search cơ bản
 - Dữ liệu search được đồng bộ qua RabbitMQ event
+
+### Bước 25: Đồng bộ đầy đủ dữ liệu Search Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Publish đầy đủ comic data qua event `comic.created`
+- Search Service lưu:
+  - title
+  - author
+  - genres
+  - description
+  - coverImage
+  - status
+- Nâng cấp search API:
+  - tìm theo title
+  - tìm theo author
+  - tìm theo genres
+- Build lại Comic Service và Search Service
+- Test search thành công
+
+Ghi chú:
+- Search Service hiện hoạt động như search index database
+- Dữ liệu được đồng bộ bất đồng bộ qua RabbitMQ

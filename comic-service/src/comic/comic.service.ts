@@ -27,8 +27,13 @@ export class ComicService {
       'comic.created',
       Buffer.from(
         JSON.stringify({
-          comicId: comic._id,
-          title: comic.title,
+            comicId: comic._id,
+            title: comic.title,
+            author: comic.author,
+            genres: comic.genres,
+            description: comic.description,
+            coverImage: comic.coverImage,
+            status: comic.status,
         }),
       ),
     );
