@@ -158,3 +158,22 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Port `3000` sẽ dành cho API Gateway
 - Auth Service chạy tại `http://localhost:3001`
+
+### Bước 9: Xây dựng JWT Authentication Guard
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài đặt Passport và JWT Strategy
+- Tạo `JwtStrategy`
+- Tạo `JwtAuthGuard`
+- Tạo API `GET /auth/profile`
+- Bảo vệ API bằng JWT
+- Test Bearer Token bằng Postman thành công
+
+Ghi chú:
+- JWT được gửi qua Authorization Header
+- Format:
+  Authorization: Bearer TOKEN
+- Nếu token không hợp lệ hoặc hết hạn:
+  API trả `401 Unauthorized`
