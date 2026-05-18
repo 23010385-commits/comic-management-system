@@ -70,3 +70,17 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Auth Service hiện đang chạy mặc định ở port 3000
 - Các chức năng đăng ký, đăng nhập và JWT sẽ được triển khai ở bước sau
+
+### Bước 4: Kết nối Auth Service với MongoDB
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài đặt `@nestjs/mongoose` và `mongoose`
+- Cấu hình kết nối MongoDB cho Auth Service
+- Kết nối database `comic_auth_db`
+- Chạy thử Auth Service thành công
+
+Ghi chú:
+- MongoDB đang chạy bằng Docker ở `localhost:27017`
+- Auth Service dùng database riêng: `comic_auth_db`
