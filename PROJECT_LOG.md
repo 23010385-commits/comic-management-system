@@ -365,3 +365,23 @@ Ghi chú:
   - `auth-service`
   - `comic-service`
   - `chapter-service`
+
+  ### Bước 20: Thêm Redis Cache cho Comic Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài đặt Redis package cho Comic Service
+- Tạo Redis Provider
+- Kết nối Comic Service với Redis container
+- Cache API `GET /comics`
+- Tự động xóa cache khi:
+  - tạo truyện
+  - cập nhật truyện
+  - xóa truyện
+- Test Redis Cache thành công
+
+Ghi chú:
+- Cache key: `all_comics`
+- Cache TTL: 60 giây
+- Redis giúp giảm tải MongoDB và tăng tốc phản hồi API
