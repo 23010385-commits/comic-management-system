@@ -536,3 +536,18 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Frontend gọi Comic Service để lấy danh sách truyện
 - Frontend gọi Search Service để tìm kiếm truyện
+
+### Bước 29: Frontend Login và lưu JWT
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Thêm form login vào frontend
+- Gọi API `POST /api/auth/login`
+- Nhận `accessToken` từ Auth Service
+- Lưu token vào `localStorage`
+- Hiển thị trạng thái đã đăng nhập
+- Thêm chức năng logout
+
+Ghi chú:
+- Token sẽ được dùng cho các chức năng admin ở bước sau
