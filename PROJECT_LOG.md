@@ -342,3 +342,26 @@ Ghi chú:
 - Auth, Comic, Chapter Service chạy bằng Docker
 - API Gateway hiện chạy local bằng `npm run start:dev`
 - Client chỉ cần gọi qua `http://localhost:3000/api/...`
+
+### Bước 19: Dockerize API Gateway
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo `Dockerfile` cho API Gateway
+- Tạo `.dockerignore`
+- Chuyển proxy target sang Docker service hostname
+- Thêm API Gateway vào `docker-compose.yml`
+- Build và chạy toàn bộ hệ thống bằng Docker Compose
+- Test API Gateway thành công:
+  - `/api/auth`
+  - `/api/comics`
+  - `/api/chapters`
+
+Ghi chú:
+- API Gateway container tên `comic_api_gateway`
+- Gateway chạy ở port `3000`
+- Các service giao tiếp nội bộ qua Docker network:
+  - `auth-service`
+  - `comic-service`
+  - `chapter-service`

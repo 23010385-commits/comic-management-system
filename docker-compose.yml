@@ -41,6 +41,15 @@ services:
       - "3003:3003"
     depends_on:
       - mongodb
+  api-gateway:
+    build: ./api-gateway
+    container_name: comic_api_gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth-service
+      - comic-service
+      - chapter-service
 
 volumes:
   mongodb_data:

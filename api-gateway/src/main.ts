@@ -8,7 +8,7 @@ async function bootstrap() {
   app.use(
     '/api/auth',
     createProxyMiddleware({
-      target: 'http://localhost:3001/auth',
+      target: 'http://auth-service:3001/auth',
       changeOrigin: true,
     }),
   );
@@ -16,7 +16,7 @@ async function bootstrap() {
   app.use(
     '/api/comics',
     createProxyMiddleware({
-      target: 'http://localhost:3002/comics',
+      target: 'http://comic-service:3002/comics',
       changeOrigin: true,
     }),
   );
@@ -24,7 +24,7 @@ async function bootstrap() {
   app.use(
     '/api/chapters',
     createProxyMiddleware({
-      target: 'http://localhost:3003/chapters',
+      target: 'http://chapter-service:3003/chapters',
       changeOrigin: true,
     }),
   );
