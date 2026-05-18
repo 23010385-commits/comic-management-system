@@ -108,3 +108,46 @@ h1 {
   align-items: center;
   gap: 12px;
 }
+
+.admin-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.admin-box h2 {
+  margin: 0 0 12px;
+}
+
+.admin-box input,
+.admin-box textarea,
+.admin-box select {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.admin-box textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.admin-box button {
+  padding: 14px;
+  border: none;
+  background: #198754;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.admin-box button:hover {
+  background: #157347;
+}

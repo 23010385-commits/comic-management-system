@@ -551,3 +551,31 @@ Trạng thái: Hoàn thành
 
 Ghi chú:
 - Token sẽ được dùng cho các chức năng admin ở bước sau
+
+### Bước 30: Admin thêm truyện từ Frontend
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Thêm admin form trên frontend
+- Gửi JWT token trong Authorization header
+- Gọi API `POST /api/comics`
+- Tạo comic từ giao diện web
+- Refresh danh sách truyện sau khi tạo
+- Test full flow thành công
+
+Flow hệ thống:
+Frontend
+-> API Gateway
+-> JWT Middleware
+-> Comic Service
+-> MongoDB
+-> Redis Cache Clear
+-> RabbitMQ Event
+-> Notification Service
+-> Search Service
+-> Frontend Refresh
+
+Ghi chú:
+- Chỉ user đã login mới tạo được truyện
+- Search Service tự động index comic mới

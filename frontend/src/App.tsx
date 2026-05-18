@@ -22,6 +22,15 @@ function App() {
   const [token, setToken] = useState(
     localStorage.getItem('token') || '',
   );
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [genres, setGenres] = useState('');
+  const [description, setDescription] =
+    useState('');
+  const [coverImage, setCoverImage] =
+    useState('');
+  const [status, setStatus] =
+    useState('ONGOING');
 
   const fetchComics = async () => {
     try {
@@ -88,6 +97,52 @@ function App() {
     }
   };
 
+  const handleCreateComic = async () => {
+    try {
+      const response = await fetch(
+        'http://localhost:3000/api/comics',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            title,
+            author,
+            genres: genres
+              .split(',')
+              .map((g) => g.trim()),
+            description,
+            coverImage,
+            status,
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Comic created successfully');
+
+        setTitle('');
+        setAuthor('');
+        setGenres('');
+        setDescription('');
+        setCoverImage('');
+        setStatus('ONGOING');
+
+        fetchComics();
+      } else {
+        alert(data.message || 'Create failed');
+      }
+    } catch (error) {
+      console.error(error);
+
+      alert('Create comic error');
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('token');
 
@@ -137,6 +192,75 @@ function App() {
           </div>
         )}
       </div>
+
+      {token && (
+        <div className="admin-box">
+          <h2>Admin - Thêm truyện</h2>
+
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) =>
+              setTitle(e.target.value)
+            }
+          />
+
+          <input
+            type="text"
+            placeholder="Author"
+            value={author}
+            onChange={(e) =>
+              setAuthor(e.target.value)
+            }
+          />
+
+          <input
+            type="text"
+            placeholder="Genres (comma separated)"
+            value={genres}
+            onChange={(e) =>
+              setGenres(e.target.value)
+            }
+          />
+
+          <input
+            type="text"
+            placeholder="Cover Image URL"
+            value={coverImage}
+            onChange={(e) =>
+              setCoverImage(e.target.value)
+            }
+          />
+
+          <textarea
+            placeholder="Description"
+            value={description}
+            onChange={(e) =>
+              setDescription(e.target.value)
+            }
+          />
+
+          <select
+            value={status}
+            onChange={(e) =>
+              setStatus(e.target.value)
+            }
+          >
+            <option value="ONGOING">
+              ONGOING
+            </option>
+
+            <option value="COMPLETED">
+              COMPLETED
+            </option>
+          </select>
+
+          <button onClick={handleCreateComic}>
+            Create Comic
+          </button>
+        </div>
+      )}
 
       <div className="search-box">
         <input
