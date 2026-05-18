@@ -282,3 +282,24 @@ Ghi chú:
 - Chapter Service dùng để quản lý chương truyện
 - Chapter Service chạy tại `http://localhost:3003`
 - Database riêng: `comic_chapter_db`
+
+### Bước 16: Tạo Chapter Schema và API quản lý chương truyện
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo Chapter Module
+- Tạo Chapter Service
+- Tạo Chapter Controller
+- Tạo Chapter Schema
+- Tạo CreateChapterDto
+- Xây dựng API `POST /chapters`
+- Xây dựng API `GET /chapters/comic/:comicId`
+- Xây dựng API `GET /chapters/:id`
+- Test tạo chapter thành công
+- Test lấy danh sách chapter theo comicId thành công
+
+Ghi chú:
+- Chapter liên kết với Comic thông qua `comicId`
+- Dữ liệu chapter được lưu trong database `comic_chapter_db`
+- `images` lưu danh sách URL ảnh của chapter
