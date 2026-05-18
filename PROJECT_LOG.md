@@ -503,3 +503,18 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Gateway đóng vai trò kiểm tra xác thực tập trung
 - Các request đọc dữ liệu `GET` vẫn được public
+
+### Bước 27: Tạo Frontend cơ bản
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo frontend bằng React + Vite + TypeScript
+- Kết nối frontend với API Gateway
+- Bật CORS cho API Gateway
+- Hiển thị danh sách truyện từ API `GET /api/comics`
+- Test frontend thành công tại `http://localhost:5173`
+
+Ghi chú:
+- Frontend hiện gọi API Gateway tại `http://localhost:3000/api`
+- Một số ảnh không hiển thị vì đang dùng URL mẫu `example.com`
