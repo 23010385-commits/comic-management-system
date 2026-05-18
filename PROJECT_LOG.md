@@ -247,3 +247,21 @@ Ghi chú:
 - Comic Service hiện đã hỗ trợ CRUD cơ bản đầy đủ
 - MongoDB ObjectId được dùng để định danh truyện
 - Khi test API cần thay `:id` bằng ObjectId thực tế
+
+### Bước 14: Dockerize Comic Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo `Dockerfile` cho Comic Service
+- Tạo `.dockerignore`
+- Thêm Comic Service vào `docker-compose.yml`
+- Build và chạy Comic Service bằng Docker Compose
+- Kết nối Comic Service với MongoDB container bằng hostname `mongodb`
+- Test API `GET /comics` thành công qua Docker
+
+Ghi chú:
+- Comic Service container tên `comic_comic_service`
+- Comic Service chạy ở port `3002`
+- Comic Service hiện hỗ trợ CRUD đầy đủ
+- MongoDB được dùng chung thông qua Docker network

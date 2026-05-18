@@ -6,7 +6,7 @@ import { ComicModule } from './comic/comic.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/comic_comic_db'),
+    MongooseModule.forRoot('mongodb://mongodb:27017/comic_comic_db'),
     ComicModule,
   ],
   controllers: [AppController],

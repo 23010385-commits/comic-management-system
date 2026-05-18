@@ -27,6 +27,13 @@ services:
       - "3001:3001"
     depends_on:
       - mongodb
+  comic-service:
+    build: ./comic-service
+    container_name: comic_comic_service
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongodb
 
 volumes:
   mongodb_data:
