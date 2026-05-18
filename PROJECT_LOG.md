@@ -56,3 +56,17 @@ Ghi chú:
 - Redis: localhost:6379
 - RabbitMQ: localhost:5672
 - RabbitMQ Dashboard: http://localhost:15672
+
+### Bước 3: Khởi tạo Auth Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài NestJS CLI
+- Tạo project NestJS cho `auth-service`
+- Chạy thử Auth Service bằng `npm run start:dev`
+- Kiểm tra API mặc định tại `http://localhost:3000`
+
+Ghi chú:
+- Auth Service hiện đang chạy mặc định ở port 3000
+- Các chức năng đăng ký, đăng nhập và JWT sẽ được triển khai ở bước sau
