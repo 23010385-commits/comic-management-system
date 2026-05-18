@@ -104,3 +104,23 @@ Ghi chú:
 - User sẽ được lưu trong database `comic_auth_db`
 - Trường email được đặt unique để tránh đăng ký trùng tài khoản
 - Password sẽ dùng để lưu mật khẩu đã mã hóa ở bước sau
+
+### Bước 6: Xây dựng chức năng đăng ký tài khoản
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Cài đặt `bcrypt` để mã hóa mật khẩu
+- Tạo Auth Module
+- Tạo Auth Service
+- Tạo Auth Controller
+- Tạo Register DTO
+- Xây dựng API `POST /auth/register`
+- Sửa lỗi `UserModel` chưa được import trong `AuthModule`
+- Test đăng ký tài khoản thành công bằng Postman
+- API trả về `201 Created`
+
+Ghi chú:
+- Password đã được mã hóa trước khi lưu MongoDB
+- Response không trả về password
+- Khi test API bằng Postman cần chọn `Body -> raw -> JSON`
