@@ -265,3 +265,20 @@ Ghi chú:
 - Comic Service chạy ở port `3002`
 - Comic Service hiện hỗ trợ CRUD đầy đủ
 - MongoDB được dùng chung thông qua Docker network
+
+### Bước 15: Khởi tạo Chapter Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Xóa `.gitkeep` trong `chapter-service`
+- Tạo project NestJS cho `chapter-service`
+- Cài đặt `@nestjs/mongoose` và `mongoose`
+- Cấu hình Chapter Service chạy ở port `3003`
+- Kết nối Chapter Service với MongoDB database `comic_chapter_db`
+- Test local service thành công
+
+Ghi chú:
+- Chapter Service dùng để quản lý chương truyện
+- Chapter Service chạy tại `http://localhost:3003`
+- Database riêng: `comic_chapter_db`
