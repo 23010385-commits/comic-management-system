@@ -230,3 +230,20 @@ Trạng thái: Hoàn thành
 Ghi chú:
 - Comic Service chạy ở port `3002`
 - Dữ liệu truyện được lưu vào database `comic_comic_db`
+
+### Bước 13: Hoàn thiện CRUD cho Comic Service
+
+Trạng thái: Hoàn thành
+
+Đã thực hiện:
+- Tạo `UpdateComicDto`
+- Xây dựng API `GET /comics/:id`
+- Xây dựng API `PATCH /comics/:id`
+- Xây dựng API `DELETE /comics/:id`
+- Thêm xử lý lỗi `404 Not Found`
+- Test CRUD thành công bằng Postman
+
+Ghi chú:
+- Comic Service hiện đã hỗ trợ CRUD cơ bản đầy đủ
+- MongoDB ObjectId được dùng để định danh truyện
+- Khi test API cần thay `:id` bằng ObjectId thực tế
