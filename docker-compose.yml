@@ -25,6 +25,7 @@ services:
     container_name: comic_auth_service
     ports:
       - "3001:3001"
+    restart: always
     depends_on:
       - mongodb
   comic-service:
@@ -32,6 +33,7 @@ services:
     container_name: comic_comic_service
     ports:
       - "3002:3002"
+    restart: always
     depends_on:
       - mongodb
   chapter-service:
@@ -39,6 +41,7 @@ services:
     container_name: comic_chapter_service
     ports:
       - "3003:3003"
+    restart: always
     depends_on:
       - mongodb
   api-gateway:
@@ -46,6 +49,7 @@ services:
     container_name: comic_api_gateway
     ports:
       - "3000:3000"
+    restart: always
     depends_on:
       - auth-service
       - comic-service
@@ -55,6 +59,7 @@ services:
     container_name: comic_notification_service
     ports:
       - "3004:3004"
+    restart: always
     depends_on:
       - rabbitmq
   search-service:
@@ -62,6 +67,7 @@ services:
     container_name: comic_search_service
     ports:
       - "3005:3005"
+    restart: always
     depends_on:
       - mongodb
       - rabbitmq
@@ -70,6 +76,7 @@ services:
     container_name: comic_frontend
     ports:
       - "5173:5173"
+    restart: always
     depends_on:
       - api-gateway
 
